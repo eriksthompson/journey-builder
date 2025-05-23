@@ -13,7 +13,8 @@ for viewing with reactflow library. It can be zoomed in and out on and moved aro
 
 User Guide:
 The drop down menu allows for form functionality. Select a form to fill out. Click submit when completed. 
-Forms down stream the alphabet ordering graph will auto fill. Select a form to view data.
+Forms down stream the alphabet ordering graph will auto fill. Select a form to view data. Autofill button allows for 
+submitting autofilled entries.
 
 Challenge link: 
 https://fluttering-atmosphere-1b5.notion.site/Journey-Builder-React-Coding-Challenge-190d5fe264fa80cba39ec21afc6d42ec
