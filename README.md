@@ -3,7 +3,7 @@ Run webserver:
 2. Run mock server https://github.com/mosaic-avantos/frontendchallengeserver with $npm start.
 3. Go to directory of journey-builder and run backend server $node backend/server.cjs
 4. Finally run $npm run dev
-5. Click on [ localhost://](http://localhost:5173/)
+5. Click on http://localhost:5173/
 
 Functionality: 
 React, Vite are powerful tools used along with TypeScript, JavaScript, CSS and HTML.
