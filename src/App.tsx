@@ -9,11 +9,14 @@ const App: React.FC = () => {
   const [forms, setForms] = useState<FormNode[]>([]);
   const [selectedForm, setSelectedForm] = useState<FormNode | null>(null);
   const [mapping, setMapping] = useState<PrefillMapping>({});
-
-  useEffect(() => {
+ useEffect(() => {
     const loadData = async () => {
-      const data = await fetchFormGraph();
+      try{const data = await fetchFormGraph();
+      console.log('Forms fetched: ', data);
       setForms(data);
+      }catch (error) {
+        console.error('Failed to load forms', error);
+      }
     };
 
     loadData();
@@ -46,9 +49,9 @@ const App: React.FC = () => {
       <label>Select a form to configure:</label>
       <select onChange={(e) => handleSelectForm(e.target.value)} defaultValue="">
         <option value="" disabled>Select a form</option>
-        {forms.map((form) => (
+        {Array.isArray(forms) && forms.map((form) => (
           <option key={form.id} value={form.id}>
-            {form.name}
+            {form.data?.name ?? 'Unnamed Form'}
           </option>
         ))}
       </select>
