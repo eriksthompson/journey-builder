@@ -8,7 +8,7 @@ export const FormList: React.FC<{
     <ul>
         {forms.map(f => (
             <li key={f.id}>
-                <button onClick= {() => onSelect(f.id)}>{f.name}</button>
+                <button onClick= {() => onSelect(f.id)}>{f.data.name}</button>
             </li>
         ))}
     </ul>

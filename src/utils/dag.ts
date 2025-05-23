@@ -3,31 +3,45 @@ import { FormNode } from '../types';
 export const buildAdjacencyMap = (forms: FormNode[]) => {
   const map: Record<string, string[]> = {};
   for (const form of forms) {
-    map[form.id] = form.data.prerequisites;
+    map[form.id] = form.prerequisites;
   }
   return map;
 };
 
-export const topologicalSort = (forms: FormNode[]): string[] => {
-  const adj = buildAdjacencyMap(forms);
-  const visited = new Set<string>();
-  const result: string[] = [];
+/**
+ * Performs a topological sort on the forms to determine the correct order.
+ * @param forms - Array of FormNode objects.
+ * @returns Sorted array of FormNode objects.
+ */
+export const topologicalSort = (forms: FormNode[]): FormNode[] => {
+  const sorted: FormNode[] = [];
+  const visited: Set<string> = new Set();
+  const visiting: Set<string> = new Set(); // to detect cycles
 
-  const dfs = (id: string, temp: Set<string>) => {
-    if (temp.has(id)) throw new Error('Cycle detected');
-    if (visited.has(id)) return;
+  const visit = (form: FormNode) => {
+    if (visited.has(form.id)) return;       // Already processed
+    if (visiting.has(form.id)) {
+      throw new Error(`Cycle detected at form: ${form.id}`);
+    }
 
-    temp.add(id);
-    for (const pre of adj[id] || []) dfs(pre, temp);
-    temp.delete(id);
+    visiting.add(form.id);
 
-    visited.add(id);
-    result.push(id);
+    if (form.dependsOn && Array.isArray(form.dependsOn)) {
+      form.dependsOn.forEach((depId) => {
+        const depForm = forms.find((f) => f.id === depId);
+        if (depForm) visit(depForm);
+        // else you could warn about missing dependency
+      });
+    }
+
+    visiting.delete(form.id);
+    visited.add(form.id);
+    sorted.push(form);
   };
 
-  for (const form of forms) {
-    if (!visited.has(form.id)) dfs(form.id, new Set());
-  }
+  forms.forEach((form) => {
+    if (!visited.has(form.id)) visit(form);
+  });
 
-  return result.reverse();
+  return sorted.reverse(); // dependencies first, dependents last
 };
