@@ -1,12 +1,22 @@
-# React + Vite
+Run webserver: 
+1. Execute npm install to install dependencies.
+2. Run mock server https://github.com/mosaic-avantos/frontendchallengeserver with $npm start.
+3. Go to directory of journey-builder and run backend server $node backend/server.cjs
+4. Finally run $npm run dev
+5. Click on [ localhost://](http://localhost:5173/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Functionality: 
+React, Vite are powerful tools used along with TypeScript, JavaScript, CSS and HTML.
+The DAG .JSON object is loaded from the API on mock server. It is then loaded into memory into
+multiple hierarchical objects defined in types.ts. The website loads a the Directed Acyclical Graph (DAG) 
+for viewing with reactflow library. It can be zoomed in and out on and moved around, drawn left to right. 
 
-Currently, two official plugins are available:
+User Guide:
+The drop down menu allows for form functionality. Select a form to fill out. Click submit when completed. 
+Forms down stream the alphabet ordering graph will auto fill. Select a form to view data.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Challenge link: 
+https://fluttering-atmosphere-1b5.notion.site/Journey-Builder-React-Coding-Challenge-190d5fe264fa80cba39ec21afc6d42ec
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+By Erik Thompson 
+mintelekk
